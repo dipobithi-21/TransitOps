@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { Activity, AlertTriangle, Download, Edit3, Plus, Search, ShieldAlert, ShieldCheck, Trash2, Users, X } from "lucide-react";
 import { Bar, BarChart, Cell, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { createSafetyDrivers, getLicenseStatus, getRiskLevel, isEligibleForTrip } from "../../data/safetyDrivers";
+import { IncidentManagement, InspectionManagement } from "./SafetyOperations";
 
 const card = "rounded-2xl border border-[#DAF1DE]/25 bg-[#163832]/60 shadow-[0_18px_45px_rgba(5,31,32,.28)] backdrop-blur-xl";
 const btn = "inline-flex items-center justify-center gap-2 rounded-xl px-3 py-2 text-xs font-bold transition hover:-translate-y-0.5 disabled:opacity-40";
@@ -42,8 +43,8 @@ function IncidentsDesk() {
 }
 
 function SafetyModuleRouter({ activeNav, ...props }) {
-  if (activeNav.id === "inspections") return <InspectionsDesk />;
-  if (activeNav.id === "incidents") return <IncidentsDesk />;
+  if (activeNav.id === "inspections") return <InspectionManagement />;
+  if (activeNav.id === "incidents") return <IncidentManagement />;
   return <SafetyOfficerContent activeNav={activeNav} {...props} />;
 }
 

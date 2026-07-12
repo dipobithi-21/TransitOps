@@ -12,6 +12,7 @@ export const createSafetyDrivers = () => names.map((name, index) => ({
   safetyScore: [98, 95, 58, 89, 54, 91, 76, 63, 87, 93, 82, 59, 97, 70, 52, 88, 79, 96, 68, 57][index],
   status: statuses[index % 4], vehicle: index % 4 === 0 ? "TRK-12" : index % 4 === 1 ? "VAN-05" : index % 4 === 2 ? "MINI-08" : null,
   notes: index % 5 === 0 ? "Safety refresher scheduled." : "No active notes.",
+  joiningDate: `202${1 + (index % 4)}-${String((index % 11) + 1).padStart(2, "0")}-${String(8 + (index % 18)).padStart(2, "0")}`,
 }));
 
 export function getLicenseStatus(driver, today = new Date("2026-07-12")) {
