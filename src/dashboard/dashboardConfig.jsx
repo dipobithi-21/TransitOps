@@ -47,6 +47,8 @@ export const dashboardConfig = {
     landingNavId: "safetyOverview",
     navItems: [
       { id: "safetyOverview", label: "Safety Overview", icon: ShieldCheck },
+      { id: "drivers", label: "Driver Management", icon: UserCheck },
+      { id: "compliance", label: "Driver Compliance", icon: ClipboardCheck },
       { id: "inspections", label: "Inspections", icon: ClipboardCheck },
       { id: "incidents", label: "Incidents", icon: ShieldAlert },
     ],
