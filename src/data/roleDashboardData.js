@@ -202,30 +202,39 @@ export const roleDashboardData = {
   "Safety Officer": {
     modules: {
       safetyOverview: {
-        eyebrow: "Safety Control",
-        title: "Safety Analytics",
-        description: "Track incidents, inspections, driver compliance, and corrective actions.",
-        actionLabel: "Create Audit",
         metrics: [
-          { label: "Open Incidents", value: "4", detail: "1 critical", tone: "orange" },
-          { label: "Inspections", value: "9", detail: "6 completed", tone: "green" },
-          { label: "Training Due", value: "12", detail: "This month", tone: "yellow" },
-          { label: "Safety Score", value: "91%", detail: "+4%", tone: "teal" },
+          { label: "Total Drivers", value: "48", detail: "+3 this month", tone: "green", icon: "drivers", trend: "up" },
+          { label: "Licenses Expiring", value: "6", detail: "2 due within 14 days", tone: "warning", icon: "licenses", trend: "up" },
+          { label: "Open Incidents", value: "4", detail: "Down 20% this week", tone: "danger", icon: "incidents", trend: "down" },
+          { label: "Average Safety Score", value: "92.4", detail: "+2.1 pts vs. last month", tone: "accent", icon: "score", trend: "up" },
         ],
-        tableTitle: "Safety Queue",
-        tableColumns: ["Case", "Vehicle", "Driver", "Type", "Severity", "Owner"],
-        tableRows: [
-          ["SO114", "TRK-12", "John", "Inspection", "Medium", "Nisha"],
-          ["SO115", "VAN-05", "Alex", "Route Deviation", "Low", "Nisha"],
-          ["SO116", "MINI-08", "Priya", "Document", "Low", "Arjun"],
-          ["SO117", "TRK-04", "Rahul", "Brake Check", "Critical", "Nisha"],
+        drivers: [
+          { name: "Alex Johnson", vehicle: "TRK-12", licenseNumber: "DL-548732", expiryDate: "18 Dec 2027", score: 98, status: "Active" },
+          { name: "Sarah Williams", vehicle: "VAN-05", licenseNumber: "DL-912645", expiryDate: "24 Jul 2026", score: 95, status: "Expiring Soon" },
+          { name: "Michael Chen", vehicle: "MINI-08", licenseNumber: "DL-338921", expiryDate: "09 Jul 2026", score: 92, status: "Expired" },
+          { name: "Emily Davis", vehicle: "TRK-04", licenseNumber: "DL-782145", expiryDate: "15 Mar 2027", score: 89, status: "Active" },
+          { name: "David Wilson", vehicle: "VAN-09", licenseNumber: "DL-619873", expiryDate: "01 Aug 2026", score: 84, status: "Suspended" },
         ],
-        statusTitle: "Safety Status",
-        statusTotal: "25 checks",
-        statusBars: [
-          { label: "Cleared", value: 16, color: "#56e6a5" },
-          { label: "Review", value: 5, color: "#ffad32" },
-          { label: "Critical", value: 4, color: "#ff6b8b" },
+        licenseTracker: {
+          total: 48, validPercent: 77, expiringPercent: 13, expiredPercent: 10,
+          items: [{ label: "Valid", value: 37, color: "#8EB69B" }, { label: "Expiring", value: 6, color: "#E6BD62" }, { label: "Expired", value: 5, color: "#E4746C" }],
+        },
+        recentIncidents: [
+          { driver: "David Wilson", incident: "Fatigue Alert", severity: "High", date: "12 Jul", status: "Open" },
+          { driver: "Sarah Williams", incident: "Harsh Braking", severity: "Medium", date: "11 Jul", status: "Review" },
+          { driver: "Alex Johnson", incident: "Overspeed", severity: "Low", date: "10 Jul", status: "Resolved" },
+          { driver: "Michael Chen", incident: "Seat Belt Violation", severity: "Medium", date: "09 Jul", status: "Open" },
+          { driver: "Emily Davis", incident: "Unauthorized Route", severity: "Low", date: "08 Jul", status: "Closed" },
+        ],
+        safetyScores: [{ name: "Alex Johnson", score: 98 }, { name: "Sarah Williams", score: 95 }, { name: "Michael Chen", score: 92 }, { name: "Emily Davis", score: 89 }, { name: "David Wilson", score: 84 }],
+        licenseChart: [{ name: "Valid", value: 37, color: "#8EB69B" }, { name: "Expiring", value: 6, color: "#E6BD62" }, { name: "Expired", value: 5, color: "#E4746C" }],
+        quickActions: ["Add Driver", "Update License", "Record Incident", "Export Report"],
+        activity: [
+          { text: "License renewed", detail: "Alex Johnson · DL-548732", time: "10 min ago" },
+          { text: "Driver added", detail: "Priya Nair added to the fleet", time: "1 hr ago" },
+          { text: "Incident resolved", detail: "Overspeed case for Alex Johnson", time: "3 hrs ago" },
+          { text: "Safety audit completed", detail: "West region monthly audit", time: "Yesterday" },
+          { text: "Training completed", detail: "Defensive driving · 12 drivers", time: "11 Jul" },
         ],
       },
       inspections: {
