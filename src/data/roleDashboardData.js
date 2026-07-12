@@ -1,3 +1,6 @@
+const safetyDriverNames = ["Alex Johnson", "Sarah Williams", "Michael Chen", "Emily Davis", "David Wilson", "Priya Nair", "Rahul Mehta", "Nisha Patel", "Arjun Kapoor", "Meera Shah", "Daniel Brooks", "Olivia Martin", "James Carter", "Sophia Turner", "Ethan Clark", "Mia Roberts", "Noah Walker", "Ava Thompson", "Liam Harris", "Isabella Moore", "Lucas Anderson", "Emma Lewis", "Benjamin Hall", "Charlotte Young", "Henry King", "Amelia Scott", "Jack Green", "Harper Baker", "William Adams", "Evelyn Nelson", "Leo Mitchell", "Grace Carter", "Owen Phillips", "Chloe Evans", "Samuel Reed", "Lily Parker", "Jacob Morgan", "Ella Cooper", "Matthew Bell", "Zoe Foster", "Ryan Ward", "Hannah Price", "Adam Ross", "Layla Wood", "Nathan Cox", "Victoria Gray", "Caleb Hughes", "Stella James", "Isaac Murphy", "Ruby Kelly"];
+const safetyIncidentTypes = ["Overspeed", "Harsh Braking", "Seat Belt Violation", "Unauthorized Route", "Driver Fatigue", "Vehicle Damage", "Near Miss", "Collision"];
+
 export const roleDashboardData = {
   "Fleet Manager": {
     modules: {
@@ -202,31 +205,51 @@ export const roleDashboardData = {
   "Safety Officer": {
     modules: {
       safetyOverview: {
-        eyebrow: "Safety Control",
-        title: "Safety Analytics",
-        description: "Track incidents, inspections, driver compliance, and corrective actions.",
-        actionLabel: "Create Audit",
         metrics: [
-          { label: "Open Incidents", value: "4", detail: "1 critical", tone: "orange" },
-          { label: "Inspections", value: "9", detail: "6 completed", tone: "green" },
-          { label: "Training Due", value: "12", detail: "This month", tone: "yellow" },
-          { label: "Safety Score", value: "91%", detail: "+4%", tone: "teal" },
+          { label: "Total Drivers", value: "48", detail: "+3 this month", tone: "green", icon: "drivers", trend: "up" },
+          { label: "Licenses Expiring", value: "6", detail: "2 due within 14 days", tone: "warning", icon: "licenses", trend: "up" },
+          { label: "Open Incidents", value: "4", detail: "Down 20% this week", tone: "danger", icon: "incidents", trend: "down" },
+          { label: "Average Safety Score", value: "92.4", detail: "+2.1 pts vs. last month", tone: "accent", icon: "score", trend: "up" },
         ],
-        tableTitle: "Safety Queue",
-        tableColumns: ["Case", "Vehicle", "Driver", "Type", "Severity", "Owner"],
-        tableRows: [
-          ["SO114", "TRK-12", "John", "Inspection", "Medium", "Nisha"],
-          ["SO115", "VAN-05", "Alex", "Route Deviation", "Low", "Nisha"],
-          ["SO116", "MINI-08", "Priya", "Document", "Low", "Arjun"],
-          ["SO117", "TRK-04", "Rahul", "Brake Check", "Critical", "Nisha"],
+        drivers: [
+          { name: "Alex Johnson", vehicle: "TRK-12", licenseNumber: "DL-548732", expiryDate: "18 Dec 2027", score: 98, status: "Active" },
+          { name: "Sarah Williams", vehicle: "VAN-05", licenseNumber: "DL-912645", expiryDate: "24 Jul 2026", score: 95, status: "Expiring Soon" },
+          { name: "Michael Chen", vehicle: "MINI-08", licenseNumber: "DL-338921", expiryDate: "09 Jul 2026", score: 92, status: "Expired" },
+          { name: "Emily Davis", vehicle: "TRK-04", licenseNumber: "DL-782145", expiryDate: "15 Mar 2027", score: 89, status: "Active" },
+          { name: "David Wilson", vehicle: "VAN-09", licenseNumber: "DL-619873", expiryDate: "01 Aug 2026", score: 84, status: "Suspended" },
         ],
-        statusTitle: "Safety Status",
-        statusTotal: "25 checks",
-        statusBars: [
-          { label: "Cleared", value: 16, color: "#56e6a5" },
-          { label: "Review", value: 5, color: "#ffad32" },
-          { label: "Critical", value: 4, color: "#ff6b8b" },
+        licenseTracker: {
+          total: 48, validPercent: 77, expiringPercent: 13, expiredPercent: 10,
+          items: [{ label: "Valid", value: 37, color: "#8EB69B" }, { label: "Expiring", value: 6, color: "#E6BD62" }, { label: "Expired", value: 5, color: "#E4746C" }],
+        },
+        recentIncidents: [
+          { driver: "David Wilson", incident: "Fatigue Alert", severity: "High", date: "12 Jul", status: "Open" },
+          { driver: "Sarah Williams", incident: "Harsh Braking", severity: "Medium", date: "11 Jul", status: "Review" },
+          { driver: "Alex Johnson", incident: "Overspeed", severity: "Low", date: "10 Jul", status: "Resolved" },
+          { driver: "Michael Chen", incident: "Seat Belt Violation", severity: "Medium", date: "09 Jul", status: "Open" },
+          { driver: "Emily Davis", incident: "Unauthorized Route", severity: "Low", date: "08 Jul", status: "Closed" },
         ],
+        safetyScores: [{ name: "Alex Johnson", score: 98 }, { name: "Sarah Williams", score: 95 }, { name: "Michael Chen", score: 92 }, { name: "Emily Davis", score: 89 }, { name: "David Wilson", score: 84 }],
+        licenseChart: [{ name: "Valid", value: 37, color: "#8EB69B" }, { name: "Expiring", value: 6, color: "#E6BD62" }, { name: "Expired", value: 5, color: "#E4746C" }],
+        quickActions: ["Add Driver", "Update License", "Record Incident", "Export Report"],
+        activity: [
+          { text: "License renewed", detail: "Alex Johnson · DL-548732", time: "10 min ago" },
+          { text: "Driver added", detail: "Priya Nair added to the fleet", time: "1 hr ago" },
+          { text: "Incident resolved", detail: "Overspeed case for Alex Johnson", time: "3 hrs ago" },
+          { text: "Safety audit completed", detail: "West region monthly audit", time: "Yesterday" },
+          { text: "Training completed", detail: "Defensive driving · 12 drivers", time: "11 Jul" },
+        ],
+        erp: {
+          drivers: safetyDriverNames.map((name, index) => ({ id: `DRV-${String(index + 1).padStart(3, "0")}`, name, vehicle: ["TRK-12", "VAN-05", "MINI-08", "TRK-04", "VAN-09"][index % 5], license: `DL-${548732 + index * 713}`, expiry: index < 10 ? `${18 + index} Jul 2026` : `${10 + (index % 18)} ${["Aug", "Oct", "Dec", "Mar", "Jun"][index % 5]} 202${7 + (index % 2)}`, score: 98 - (index % 15), status: index === 2 || index === 19 || index === 31 || index === 42 || index === 47 ? "Expired" : index < 10 ? "Expiring Soon" : index === 4 || index === 28 ? "Suspended" : "Active" })),
+          incidents: Array.from({ length: 20 }, (_, index) => ({ id: `INC-${String(801 + index)}`, driver: safetyDriverNames[(index * 3) % safetyDriverNames.length], type: safetyIncidentTypes[index % safetyIncidentTypes.length], severity: ["Critical", "High", "Medium", "Low"][index % 4], officer: ["Nisha Patel", "Arjun Kapoor", "Meera Shah"][index % 3], date: `${12 - (index % 9)} Jul 2026`, status: index % 5 === 0 ? "Resolved" : index % 3 === 0 ? "Investigation" : "Open" })),
+          inspections: Array.from({ length: 15 }, (_, index) => ({ id: `INSP-${String(301 + index)}`, vehicle: ["TRK-12", "VAN-05", "MINI-08", "TRK-04", "VAN-09"][index % 5], type: ["Brake inspection", "Pre-trip check", "Tyre condition", "Fire safety", "Load restraint"][index % 5], due: `${13 + index} Jul 2026`, inspector: ["Nisha Patel", "Arjun Kapoor", "Meera Shah"][index % 3], status: index % 6 === 0 ? "Failed" : index % 4 === 0 ? "Due" : "Passed" })),
+          training: ["Defensive Driving", "Fatigue Management", "Emergency Response", "Load Securement", "Road Safety Refresher", "First Aid", "Collision Avoidance", "Vehicle Walkaround"].map((course, index) => ({ id: `TRN-${201 + index}`, course, driver: safetyDriverNames[index + 5], due: `${15 + index} Jul 2026`, status: index % 3 === 0 ? "Completed" : "Pending" })),
+          compliance: [{ label: "License Compliance", value: 88, status: "Due" }, { label: "Vehicle Compliance", value: 94, status: "Passed" }, { label: "Training Compliance", value: 86, status: "Due" }, { label: "Medical Certificate Compliance", value: 91, status: "Passed" }, { label: "Overall Fleet Compliance", value: 91, status: "Active" }],
+          alerts: [{ title: "Critical incident", detail: "Collision INC-801 requires investigation", priority: "Critical", action: "Investigate" }, { title: "Expired license", detail: "Michael Chen · DL-550158", priority: "High", action: "Renew" }, { title: "Inspection overdue", detail: "TRK-04 brake inspection", priority: "High", action: "Schedule" }, { title: "Training overdue", detail: "Fatigue management · David Wilson", priority: "Medium", action: "Assign" }, { title: "Medical certificate expired", detail: "Rahul Mehta", priority: "High", action: "Review" }, { title: "Driver suspended", detail: "David Wilson · safety hold", priority: "Medium", action: "View" }],
+          highRisk: [{ name: "David Wilson", score: 71, reason: "Fatigue alerts" }, { name: "Michael Chen", score: 74, reason: "Expired license" }, { name: "Rahul Mehta", score: 76, reason: "Harsh braking" }, { name: "Nisha Patel", score: 78, reason: "Inspection due" }, { name: "Arjun Kapoor", score: 79, reason: "Route violations" }],
+          notifications: ["License expires in 5 days · Sarah Williams", "Inspection due tomorrow · TRK-12", "Critical incident reported · INC-801", "Training overdue · Fatigue Management", "Driver suspended · David Wilson", "Vehicle inspection failed · VAN-09"],
+          reports: ["Driver Safety", "Incident", "Inspection", "Compliance", "Training", "License Expiry", "Monthly Safety"],
+        },
       },
       inspections: {
         eyebrow: "Vehicle Safety",

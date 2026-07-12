@@ -54,6 +54,8 @@ export const dashboardConfig = {
     landingNavId: "safetyOverview",
     navItems: [
       { id: "safetyOverview", label: "Safety Overview", icon: ShieldCheck },
+      { id: "drivers", label: "Driver Management", icon: UserCheck },
+      { id: "compliance", label: "Driver Compliance", icon: ClipboardCheck },
       { id: "inspections", label: "Inspections", icon: ClipboardCheck },
       { id: "incidents", label: "Incidents", icon: ShieldAlert },
     ],
@@ -64,9 +66,10 @@ export const dashboardConfig = {
     label: "Financial Analyst",
     landingNavId: "financeOverview",
     navItems: [
-      { id: "financeOverview", label: "Analytics", icon: Gauge },
-      { id: "fuel", label: "Fuel & Expenses", icon: Fuel },
-      { id: "invoices", label: "Invoices", icon: ReceiptText },
+      { id: "financeOverview", label: "Dashboard", icon: Gauge },
+      { id: "fuel", label: "Fuel Management", icon: Fuel },
+      { id: "expenses", label: "Expense Management", icon: ReceiptText },
+      { id: "reports", label: "Reports & Analytics", icon: FileText },
     ],
     ContentComponent: FinancialAnalystContent,
     data: roleDashboardData["Financial Analyst"],
