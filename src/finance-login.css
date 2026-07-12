@@ -1,0 +1,18 @@
+/* Applied only while the Finance role is selected on the sign-in form. */
+.auth-page.finance-login {
+  background: radial-gradient(circle at 50% 112%, rgba(70, 202, 142, 0.18), transparent 34%), #09251f;
+}
+
+.auth-page.finance-login .auth-card { border-color: #294c41; background: rgba(7, 28, 23, 0.94); }
+.auth-page.finance-login .brand-mark,
+.auth-page.finance-login .role-tabs button.active,
+.auth-page.finance-login .remember-option span,
+.auth-page.finance-login .authenticate-button { color: #09251f; background: #62d4a0; }
+.auth-page.finance-login .eyebrow span { background: #62d4a0; box-shadow: 0 0 8px #62d4a0; }
+.auth-page.finance-login .input-shell:focus-within { border-color: #62d4a0; box-shadow: 0 0 0 3px rgba(98, 212, 160, 0.14); }
+.auth-page.finance-login .forgot-password,
+.auth-page.finance-login .seat-note button:hover,
+.auth-page.finance-login .forgot-password:hover,
+.auth-page.finance-login .sso-button svg { color: #7ee6b2; }
+.auth-page.finance-login .authenticate-button { box-shadow: 0 15px 34px rgba(70, 202, 142, 0.22); }
+.auth-page.finance-login .authenticate-button:hover { background: #8be9bc; }
