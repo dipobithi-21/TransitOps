@@ -59,9 +59,10 @@ export const dashboardConfig = {
     label: "Financial Analyst",
     landingNavId: "financeOverview",
     navItems: [
-      { id: "financeOverview", label: "Analytics", icon: Gauge },
-      { id: "fuel", label: "Fuel & Expenses", icon: Fuel },
-      { id: "invoices", label: "Invoices", icon: ReceiptText },
+      { id: "financeOverview", label: "Dashboard", icon: Gauge },
+      { id: "fuel", label: "Fuel Management", icon: Fuel },
+      { id: "expenses", label: "Expense Management", icon: ReceiptText },
+      { id: "reports", label: "Reports & Analytics", icon: FileText },
     ],
     ContentComponent: FinancialAnalystContent,
     data: roleDashboardData["Financial Analyst"],

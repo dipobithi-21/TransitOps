@@ -1,0 +1,38 @@
+/* This palette is deliberately scoped to the Finance route only. */
+.ops-dashboard.finance-dashboard {
+  --navy: #09251f;
+  --line: #41665c;
+  --muted: #a7bdb3;
+  --text: #f3f7ef;
+  background: radial-gradient(circle at 4% 16%, rgba(121, 229, 183, 0.38), transparent 24%), radial-gradient(circle at 92% 14%, rgba(246, 181, 67, 0.18), transparent 21%), radial-gradient(circle at 58% 110%, rgba(26, 119, 94, 0.48), transparent 38%), #09251f;
+}
+
+.finance-dashboard .ops-sidebar { background: linear-gradient(180deg, rgba(18, 56, 47, 0.97), rgba(8, 37, 31, 0.98)); }
+.finance-dashboard .ops-logo { color: #09251f; background: #62d4a0; }
+.finance-dashboard .ops-sidebar nav .nav-active { color: #09251f; background: linear-gradient(90deg, #8be9bc, #62d4a0); box-shadow: inset 3px 0 #c5f5d9, 0 7px 22px rgba(98, 212, 160, 0.18); }
+.finance-dashboard .ops-sidebar nav button:hover { background: rgba(132, 221, 181, 0.12); }
+.finance-dashboard .topbar { background: rgba(10, 42, 34, 0.86); }
+.finance-dashboard .searchbox, .finance-dashboard .icon-button { border-color: #456b60; background: rgba(16, 55, 46, 0.88); color: #c5dacf; }
+.finance-dashboard .searchbox input { color: #eff8ef; }
+.finance-dashboard .searchbox input::placeholder { color: #95afa4; }
+.finance-dashboard .page-heading h1, .finance-dashboard .section-header h2 { color: #fbfff8; }
+.finance-dashboard .eyebrow-dash { color: #8be9bc; }
+.finance-dashboard .page-heading span, .finance-dashboard .metric-card p { color: #b9cfc4; }
+.finance-dashboard .export-button { border-color: #62d4a0; color: #09251f; background: #62d4a0; box-shadow: 0 9px 24px rgba(98, 212, 160, 0.22); }
+.finance-dashboard .filters, .finance-dashboard .panel, .finance-dashboard .metric-card { border-color: rgba(152, 211, 182, 0.23); background: linear-gradient(145deg, rgba(28, 71, 60, 0.92), rgba(13, 48, 40, 0.96)); box-shadow: 0 14px 38px rgba(2, 23, 17, 0.16); }
+.finance-dashboard .filters select { border-color: #4c7569; background-color: #143f35; color: #eff8ef; }
+.finance-dashboard .filter-title svg, .finance-dashboard .clear-filters, .finance-dashboard .text-action { color: #8be9bc; }
+.finance-dashboard .metric-card small, .finance-dashboard .muted-cell, .finance-dashboard .dispatch-row small { color: #9bb3a8 !important; }
+.finance-dashboard .metric-card strong, .finance-dashboard .recent-trips td, .finance-dashboard .dispatch-row strong, .finance-dashboard .chart-legend strong { color: #edf7f0; }
+.finance-dashboard .recent-trips th, .finance-dashboard .chart-subtitle, .finance-dashboard .chart-legend p, .finance-dashboard .chart-legend small { color: #a7c1b5; }
+.finance-dashboard .fuel-panel { background: radial-gradient(circle at 80% 85%, rgba(98, 212, 160, 0.16), transparent 42%), linear-gradient(145deg, rgba(28, 71, 60, 0.92), rgba(13, 48, 40, 0.96)); }
+.finance-dashboard .donut::before { background: #173f35; }
+.finance-dashboard .progress { background: #254b40; }
+.finance-dashboard .quick-actions button { border-color: #466f62; background: #17453a; color: #cde3d7; }
+.finance-dashboard .quick-actions button:hover { border-color: #8be9bc; background: #225d4d; color: #fff; }
+.finance-dashboard .recharts-cartesian-axis-tick-value { fill: #a7bdb3 !important; }
+.finance-dashboard .recharts-bar-rectangle path { fill: #63c998 !important; }
+.finance-dashboard .recharts-line-curve { stroke: #f5bb47 !important; }
+.finance-dashboard .recharts-line-dots circle { fill: #f5bb47 !important; }
+.finance-dashboard .recharts-pie-sector { stroke: #173f35; stroke-width: 2px; }
+.finance-dashboard .recharts-tooltip-wrapper { filter: drop-shadow(0 10px 20px rgba(3, 28, 20, 0.35)); }
