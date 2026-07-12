@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Check, LockKeyhole, Mail, ShieldCheck, Truck } from "lucide-react";
-import users from "../data/users";
 
 const roles = [
   { label: "Fleet Mgr", value: "Fleet Manager" },
@@ -10,29 +9,32 @@ const roles = [
   { label: "Finance", value: "Financial Analyst" },
 ];
 
+const roleNames = {
+  "Fleet Manager": "Fleet Manager",
+  Driver: "Driver",
+  "Safety Officer": "Safety Officer",
+  "Financial Analyst": "Finance Analyst",
+};
+
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("Fleet Manager");
   const [keepSignedIn, setKeepSignedIn] = useState(true);
-  const [error, setError] = useState("");
 
   const handleLogin = (event) => {
     event.preventDefault();
-    const user = users.find(
-      (candidate) =>
-        candidate.email.toLowerCase() === email.trim().toLowerCase() &&
-        candidate.password === password &&
-        candidate.role === role,
-    );
+    const fallbackEmail = `${role.toLowerCase().replaceAll(" ", ".")}@transitops.local`;
+    const user = {
+      id: role,
+      name: email.trim() ? email.trim().split("@")[0] : roleNames[role],
+      email: email.trim() || fallbackEmail,
+      role,
+      keepSignedIn,
+    };
 
-    if (!user) {
-      setError("Check your role, email, and password, then try again.");
-      return;
-    }
-
-    localStorage.setItem("user", JSON.stringify({ ...user, keepSignedIn }));
+    localStorage.setItem("user", JSON.stringify(user));
     navigate("/dashboard");
   };
 
@@ -59,7 +61,7 @@ function Login() {
           <div className="auth-content">
             <p className="eyebrow"><span /> Secure access <b>&middot;</b> RBAC</p>
             <h1 id="signin-heading">Sign in to command</h1>
-            <p className="auth-subtitle">Authenticate to access your fleet operations console.</p>
+            <p className="auth-subtitle">Pick a role and enter the demo dashboard.</p>
 
             <form onSubmit={handleLogin}>
               <fieldset className="role-fieldset">
@@ -70,10 +72,7 @@ function Login() {
                       type="button"
                       key={item.value}
                       className={role === item.value ? "active" : ""}
-                      onClick={() => {
-                        setRole(item.value);
-                        setError("");
-                      }}
+                      onClick={() => setRole(item.value)}
                       aria-pressed={role === item.value}
                     >
                       {item.label}
@@ -90,11 +89,7 @@ function Login() {
                   type="email"
                   placeholder="operator@transitops.io"
                   value={email}
-                  onChange={(event) => {
-                    setEmail(event.target.value);
-                    setError("");
-                  }}
-                  required
+                  onChange={(event) => setEmail(event.target.value)}
                 />
               </div>
 
@@ -109,11 +104,7 @@ function Login() {
                   type="password"
                   placeholder="••••••••••••"
                   value={password}
-                  onChange={(event) => {
-                    setPassword(event.target.value);
-                    setError("");
-                  }}
-                  required
+                  onChange={(event) => setPassword(event.target.value)}
                 />
               </div>
 
@@ -127,8 +118,6 @@ function Login() {
                 Keep this station signed in for 12 hours
               </label>
 
-              {error && <p className="login-error" role="alert">{error}</p>}
-
               <button className="authenticate-button" type="submit">
                 Authenticate <ArrowRight aria-hidden="true" size={21} strokeWidth={2.5} />
               </button>
@@ -139,7 +128,7 @@ function Login() {
               <ShieldCheck size={20} /> Continue with SSO
             </button>
             <p className="seat-note">
-              New to TransitOps? <button type="button">Request an operator seat</button>
+              Demo mode: role selection controls dashboard access.
             </p>
           </div>
         </div>
